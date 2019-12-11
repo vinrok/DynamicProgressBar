@@ -1,0 +1,66 @@
+/* Newly added */
+
+
+.progress-style { 
+    text-align: center;    
+    width: 20%;
+	height: 1%;  /* Can be anything */
+    position: relative;
+    border: 1px solid lightblue;
+	background: white;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+    padding: 10px;
+    box-shadow: inset 5px 3px 6px rgba(255,255,255,0.3);
+    /* box-shadow: inset 0 1px 1px rgba(255,255,255,0.3); */
+    top: 15em;
+    left: 40%;
+    /* transform: translate(10%, 150%); */
+}
+
+/* .progress-style > .progress-bar::after {
+    display: block;
+    height: 100%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgb(43,194,83);
+    background-image: linear-gradient(
+      center bottom,
+      rgb(43,194,83) 37%,
+      rgb(84,240,84) 69%
+    );
+    box-shadow: 
+      inset 0 2px 9px  rgba(255,255,255,0.3),
+      inset 0 -2px 6px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+  } */
+
+  .progress-style .progress-bar {
+    display: block;
+    height: 20px;
+    position: relative;
+    border-radius: 3px;
+    background-color: #0099CC;
+    width: 0;
+    animation: move 2s linear infinite;
+    border-radius: 20px 20px;
+    overflow: hidden;
+    box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);  
+    /* background-color: #f1a165; */
+    background-image: linear-gradient(to bottom, #26b1e7, #0a96f3);
+   
+  }
+
+  .progress-style .status{
+    top:0.7em;
+    /* left:50%; */
+    position:absolute;
+    text-align: center;
+    display:inline-block;
+    color: whitesmoke;
+}
+

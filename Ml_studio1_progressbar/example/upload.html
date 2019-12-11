@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script
+    src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="js/jq-ajax-progress.js"></script>
+</head>
+<body>
+<form method="post" action="/explore" id="uploadform" enctype="multipart/form-data">
+  <input hidden id="fileUpload" type="file" name="file">
+  <button id="btnupload">Chose</button>  
+  <progress id="progress" value="0" max="100"></progress>
+</form>
+
+<!-- <div >
+  <div>
+    <progress id="progress" value="0" max="100"></progress>
+  </div>
+</div> -->
+</body>
+
+<script>
+  $("#btnupload").click(function(e) {
+    $("#fileUpload").trigger('click');
+    e.preventDefault();
+  });
+
+
+  $('#fileUpload').change(function(e) {
+    $("#imageuploadform").submit();
+    e.preventDefault();
+  });
+
+  $('#uploadform').submit(function(e) {
+    e.preventDefault();
+
+    var form_data = new FormData(this);
+    console.log(form_data)
+    var jqxhr = $.ajax({
+      type: 'POST',
+      url: 'http://127.0.0.1:5000/explore',
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        console.log(data);
+      },
+      progress: downloadProgress,
+      uploadProgress: uploadProgress
+    });
+
+    $(jqxhr).on('uploadProgress', uploadProgress);
+  });
+
+
+  var $progress = $('#progress')[0];
+
+  function uploadProgress(e) {
+    if (e.lengthComputable) {
+      var percentComplete = (e.loaded * 100) / e.total;
+      console.log(percentComplete);
+      $progress.value = percentComplete;
+
+      if (percentComplete >= 100) {
+        // process completed
+      }
+    }
+  }
+
+  function downloadProgress(e) {
+    if (e.lengthComputable) {
+      var percentage = (e.loaded * 100) / e.total;
+      console.log(percentage);
+      $progress.value = percentage;
+
+      if (percentage >= 100) {
+        // process completed
+      }
+    }
+  }
+
+</script>
+
+</html>
